@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSD Clicker Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="button-group">
+            <button id="ratingButton" class="button">🌐 Rating</button>
+            <button id="earnButton" class="button">🪙 Earn</button>
+            <button id="friendsButton" class="button">👥 Frnds</button>
+        </div>
+        <p id="currency">0</p>
+        <img src="coin.png" id="clickButton" class="coin-button" alt="Click to earn currency">
+        <div class="energy-bar">
+            <div id="energy" class="energy"></div>
+        </div>
+        <p id="notification"></p>
+        <button id="openShopButton" class="button">Open Shop</button>
+    </div>
+
+    <div id="shop" class="shop">
+        <h2>Shop</h2>
+        <button id="buyUpgradeButton" class="button">Buy Upgrade (10 Currency)</button>
+        <button id="buyAutoBotButton" class="button">Buy Auto Bot (50 Currency)</button>
+        <button id="closeShopButton" class="button">Close Shop</button>
+    </div>
+
+    <div id="overlay" class="overlay">
+        <div class="close-button" onclick="closeOverlay()">✖</div>
+        <div>SOON</div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
