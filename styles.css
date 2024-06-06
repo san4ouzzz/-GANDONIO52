@@ -1,62 +1,66 @@
 body {
     font-family: 'Archivo Black', sans-serif;
-    background-color: #36393F; /* Серый фон */
+    background: linear-gradient(135deg, #191919 0%, #41f0f6 100%);
     color: white;
     text-align: center;
     margin: 0;
     padding: 0;
-    height: 100vh; /* Высота экрана для центрирования */
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Центрирование сверху */
+    justify-content: flex-start;
     align-items: center;
 }
 
 .container {
-    margin-top: 20px; /* Дополнительный отступ сверху */
+    margin-top: 20px;
 }
 
 #currency {
-    font-size: 50px; /* Уменьшаем размер шрифта */
-    margin-bottom: 25px; /* Увеличиваем отступ */
+    font-size: 50px;
+    margin-bottom: 25px;
 }
 
 .button {
     display: inline-block;
-    padding: 10px 20px; /* Увеличиваем размер кнопки */
-    font-size: 22px; /* Увеличиваем размер шрифта кнопки */
+    padding: 10px 20px;
+    font-size: 22px;
     font-weight: bold;
     color: white;
     background-color: #4E545C;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
     margin: 10px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.1s ease-in-out;
 }
 
 .button:hover {
     background-color: #5F6571;
 }
 
+.button:active {
+    transform: scale(0.95);
+}
+
 .coin-button {
-    width: 250px;  /* Увеличиваем размер монеты */
-    height: 250px;
+    width: 300px;  /* Увеличиваем размер монеты */
+    height: 300px;
     cursor: pointer;
-    user-select: none;  /* Отключение выделения */
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  /* Убираем синий хитбокс на мобильных устройствах */
-    margin-bottom: 30px; /* Увеличиваем отступ */
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin-bottom: 30px;
     transition: transform 0.1s ease-in-out;
 }
 
 .coin-button:active {
-    transform: scale(0.9); /* Анимация уменьшения монеты при нажатии */
+    transform: scale(0.9);
 }
 
 .shop {
     display: none;
     position: fixed;
-    bottom: 10px;  /* Перемещаем магазин вниз */
+    bottom: 10px;
     width: 80%;
     padding: 20px;
     background-color: #2C2F33;
@@ -64,7 +68,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.overlay {
+.overlay, .settings-overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -80,12 +84,23 @@ body {
     z-index: 1000;
 }
 
-.overlay .close-button {
+.overlay .close-button, .settings-overlay .close-button {
     position: absolute;
     top: 10px;
     left: 10px;
     font-size: 24px;
     cursor: pointer;
+}
+
+.float-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    color: #ffffff;
+    animation: float 1s ease-in-out;
+    pointer-events: none;
+    z-index: 999; /* Добавим z-index для плавающего текста, чтобы он отображался над всеми элементами */
 }
 
 @keyframes float {
@@ -99,16 +114,6 @@ body {
     }
 }
 
-.float-text {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 24px;
-    color: #ffffff;
-    animation: float 1s ease-in-out;
-    pointer-events: none;
-}
-
 .energy-bar {
     width: 80%;
     height: 20px;
@@ -116,26 +121,112 @@ body {
     border-radius: 10px;
     margin-bottom: 20px;
     position: relative;
-    margin-left: 10%; /* Смещение вправо на 10% */
+    margin-left: 5%;
 }
 
 .energy {
     height: 100%;
     width: 100%;
-    background-color: #f8ed00;
+    background-color: #18d8ca;
     border-radius: 10px;
     transition: width 0.3s;
 }
 
-/* Media queries for responsive design */
+#notification {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s;
+    transform: translateY(20px);
+}
+
+#notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.rating-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.rating-overlay .close-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.rating-overlay ul {
+    list-style: none;
+    padding: 0;
+}
+
+.rating-overlay li {
+    margin: 10px 0;
+}
+
+.settings-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.settings-overlay .close-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.settings-overlay input {
+    font-size: 20px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
 @media only screen and (max-width: 600px) {
     #currency {
-        font-size: 40px; /* Уменьшаем размер шрифта */
+        font-size: 40px;
     }
 
     .coin-button {
-        width: 200px;  /* Соответственно уменьшаем размер монеты на маленьких экранах */
-        height: 200px;
+        width: 250px;
+        height: 250px;
     }
 
     .button {

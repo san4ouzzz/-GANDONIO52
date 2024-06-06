@@ -13,6 +13,7 @@
             <button id="ratingButton" class="button">🌐 Rating</button>
             <button id="earnButton" class="button">🪙 Earn</button>
             <button id="friendsButton" class="button">👥 Frnds</button>
+            <button id="settingsButton" class="button">⚙️ Settings</button>
         </div>
         <p id="currency">0</p>
         <img src="coin.png" id="clickButton" class="coin-button" alt="Click to earn currency">
@@ -20,19 +21,37 @@
             <div id="energy" class="energy"></div>
         </div>
         <p id="notification"></p>
-        <button id="openShopButton" class="button">Open Shop</button>
+        <button id="openShopButton" class="button">Shop</button>
     </div>
 
     <div id="shop" class="shop">
         <h2>Shop</h2>
-        <button id="buyUpgradeButton" class="button">Buy Upgrade (10 Currency)</button>
-        <button id="buyAutoBotButton" class="button">Buy Auto Bot (50 Currency)</button>
+        <button id="buyUpgradeButton" class="button">Buy Upgrade (1000 Currency)</button>
+        <button id="buyAutoBotButton" class="button">Buy Auto Bot (5000 Currency)</button>
         <button id="closeShopButton" class="button">Close Shop</button>
     </div>
 
     <div id="overlay" class="overlay">
         <div class="close-button" onclick="closeOverlay()">✖</div>
         <div>SOON</div>
+    </div>
+
+    <div id="ratingOverlay" class="overlay">
+        <div class="close-button" onclick="closeRatingOverlay()">✖</div>
+        <h2>Rating</h2>
+        <ul id="ratingList"></ul>
+    </div>
+
+    <div id="settingsOverlay" class="overlay">
+        <div class="close-button" onclick="closeSettingsOverlay()">✖</div>
+        <h2>Settings</h2>
+        <label for="volumeControl">Volume:</label>
+        <input type="range" id="volumeControl" name="volumeControl" min="0" max="100">
+        <h3>Link Telegram Account</h3>
+        <form id="telegramForm">
+            <input type="text" id="telegramUsername" name="telegramUsername" placeholder="Telegram Username">
+            <button type="submit" class="button">Link Account</button>
+        </form>
     </div>
 
     <script src="scripts.js"></script>
