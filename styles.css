@@ -1,6 +1,6 @@
 body {
     font-family: 'Archivo Black', sans-serif;
-    background: linear-gradient(135deg, #191919 0%, #41f0f6 100%);
+    background: linear-gradient(135deg, #111e19 0%, #18d8ca 100%);
     color: white;
     text-align: center;
     margin: 0;
@@ -14,11 +14,18 @@ body {
 
 .container {
     margin-top: 20px;
+    position: relative;
 }
 
 #currency {
     font-size: 50px;
     margin-bottom: 25px;
+}
+
+#ratingButton {
+    position: absolute;
+    top: 70px;
+    left: 30px;
 }
 
 .button {
@@ -44,28 +51,74 @@ body {
 }
 
 .coin-button {
-    width: 300px;  /* Увеличиваем размер монеты */
-    height: 300px;
+    width: 350px;
+    height: 350px;
     cursor: pointer;
     user-select: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     margin-bottom: 30px;
     transition: transform 0.1s ease-in-out;
+    position: relative;
 }
 
 .coin-button:active {
     transform: scale(0.9);
 }
 
-.shop {
-    display: none;
+.button-group-left, .button-group-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.button-group-left {
+    left: calc(50% - 200px);
+}
+
+.button-group-right {
+    right: calc(50% - 200px);
+}
+
+.energy-bar {
+    width: 80%;
+    height: 20px;
+    background-color: #4E545C;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: relative;
+    margin-left: 5%;
+}
+
+.energy {
+    height: 100%;
+    width: 100%;
+    background-color: #41f0f6;
+    border-radius: 10px;
+    transition: width 0.3s;
+}
+
+#notification {
     position: fixed;
     bottom: 10px;
-    width: 80%;
-    padding: 20px;
-    background-color: #2C2F33;
-    border-radius: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s;
+    transform: translateY(20px);
+}
+
+#notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 .overlay, .settings-overlay {
@@ -92,17 +145,6 @@ body {
     cursor: pointer;
 }
 
-.float-text {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 24px;
-    color: #ffffff;
-    animation: float 1s ease-in-out;
-    pointer-events: none;
-    z-index: 999; /* Добавим z-index для плавающего текста, чтобы он отображался над всеми элементами */
-}
-
 @keyframes float {
     0% {
         opacity: 1;
@@ -114,42 +156,25 @@ body {
     }
 }
 
-.energy-bar {
-    width: 80%;
-    height: 20px;
-    background-color: #4E545C;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    position: relative;
-    margin-left: 5%;
-}
-
-.energy {
-    height: 100%;
-    width: 100%;
-    background-color: #18d8ca;
-    border-radius: 10px;
-    transition: width 0.3s;
-}
-
-#notification {
-    position: fixed;
-    bottom: 10px;
+.float-text {
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #444;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transition: opacity 0.5s, transform 0.5s;
-    transform: translateY(20px);
+    font-size: 24px;
+    color: #ffffff;
+    animation: float 1s ease-in-out;
+    pointer-events: none;
 }
 
-#notification.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+.shop {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    width: 80%;
+    padding: 20px;
+    background-color: #2C2F33;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .rating-overlay {
@@ -225,8 +250,8 @@ body {
     }
 
     .coin-button {
-        width: 250px;
-        height: 250px;
+        width: 300px;
+        height: 300px;
     }
 
     .button {

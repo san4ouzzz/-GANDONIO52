@@ -99,6 +99,14 @@ document.querySelectorAll(".close-button").forEach(button => {
     });
 });
 
+// Переключатель видимости кнопок
+document.getElementById("toggleButtonsButton").addEventListener("click", () => {
+    const buttons = [document.getElementById("earnButton"), document.getElementById("friendsButton"), document.getElementById("settingsButton"), document.getElementById("openShopButton")];
+    buttons.forEach(button => {
+        button.style.display = (button.style.display === 'none') ? 'inline-block' : 'none';
+    });
+});
+
 // Обновление энергии
 function updateEnergyBar() {
     const energyBar = document.getElementById("energy");
@@ -161,16 +169,6 @@ function showRatingOverlay() {
 
     overlay.style.display = 'flex';
 }
-
-// Сохранение в облако Telegram
-document.getElementById("saveToTelegramButton").addEventListener("click", () => {
-    if (telegramUsername) {
-        // Здесь должна быть логика сохранения данных в облако Telegram
-        showNotification("Currency saved to Telegram!");
-    } else {
-        showNotification("Please link your Telegram account in settings!");
-    }
-});
 
 // Привязка аккаунта Telegram
 document.getElementById("linkTelegramButton").addEventListener("click", () => {
